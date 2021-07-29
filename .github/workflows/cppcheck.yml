@@ -1,0 +1,22 @@
+name: cppcheck
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  cppcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install cppcheck tool
+        run: |
+          sudo apt-get update
+          sudo apt-get install cppcheck
+
+      - name: Execute cppcheck
+        run: cppcheck --error-exitcode=1 -i build -i third-party --quiet .
