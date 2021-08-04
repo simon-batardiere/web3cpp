@@ -6,6 +6,7 @@
 # with the License. You can obtain a copy in the file LICENSE in the source
 # distribution.
 
+find_package(Boost REQUIRED)
 add_library(web3cpp ../include/web3cpp/dummy.h dummy.cpp)
 set_target_properties(web3cpp PROPERTIES CXX_STANDARD 17)
 target_include_directories(

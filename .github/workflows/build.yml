@@ -11,15 +11,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        submodules: 'recursive'
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
 
-    - name: Configure
-      run: cmake -B build .
+      - name: Install boost library
+        run: |
+          sudo apt-get update
+          sudo apt-get install libboost-all-dev
 
-    - name: Build
-      run: cmake --build build
+      - name: Configure
+        run: cmake -B build .
 
-    - name: Test
-      run: ./build/test/web3cpp_test
+      - name: Build
+        run: cmake --build build
+
+      - name: Test
+        run: ./build/test/web3cpp_test
